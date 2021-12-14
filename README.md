@@ -37,10 +37,11 @@ def points(banana):
         print ("Winner, Kevin")
     else:
         print ("Draw")
-
-banana = list(input("Choose your string of the word banana: "))
-pyramid(banana)
-points(banana)
+   
+while True:
+    banana = list(input("Choose your string of the word banana: "))
+    pyramid(banana)
+    points(banana)
 ```
 
 Ejercicio 2:
