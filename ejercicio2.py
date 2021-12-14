@@ -1,29 +1,36 @@
 import random
 import os
-import sys
-import re
-import math
 
-def verticalRooks(r1,r2):
-    print()
+dimension = int(input("How many rows do you want your board to have? (Please note that rows and columns will have the same value): "))
+white_piece = 0x2656 #White piece starts first --> Player1
+black_piece = 0x265C #Black piece starts second --> Player 2
 
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'],'w')
-    t = int(input().strip())
+def createBoard(dimension, black_piece, white_piece):
+    board = []
+    for x in range(dimension):
+        row = []
+        for y in range(dimension):
+            if board[x][y] == board[x][random.sample(range(dimension), 1)]:
+                row.append(black_piece) #black tower
+            if board[x][y] == board[x][random.sample(range(dimension), 1)]:            
+                row.append(white_piece) #white tower
+            else:
+                row.append(" ")
+        board.append(row)
+    return board
 
-    for t_itr in range(t):
-        n = int(input().strip()) 
-        r1 = []
-        for _ in range(n):
-            r1_item = int(input().strip())
-            r1.append(r1_item)
-        
-        r2 = []
-        for _ in range(n):
-            r2_item = int(input().strip())
-            r2.append(r2_item)
-        
-        result=verticalRooks(r1,r2)
-        fptr.write(result+'\n')
-    fptr.close()
-        
+def printBoard(board):
+    for i in range(len(board)):
+        print(board[i])
+
+def play(black_piece, white_piece):
+    column = random.randint(0, dimension)
+    for i in column:
+        if black_piece[0][1] != white_piece[0][1]:
+            break
+        else:
+            black_piece = black_piece[0 + i][1]
+    return black_piece
+
+board = createBoard(dimension)
+printBoard(board)
